@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZARA • Maison de Mehndi — Bespoke Bridal Henna Atelier</title>
+<meta name="description" content="ZARA — Luxury bespoke bridal mehndi atelier. Couture henna design for discerning brides worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300&family=Inter:wght@200;300;400;500&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style type="text/tailwindcss">
+  * {
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+  }
+  .display { font-family: 'Cormorant Garamond', serif; }
+  .fancy { font-family: 'Fraunces', serif; }
+  :root {
+    --bg: #0A0A0F;
+    --bg-soft: #111117;
+    --bg-card: #13131c;
+    --gold: #d4b46a;
+    --gold-bright: #e8c97a;
+    --gold-mute: #b8985a;
+    --gold-soft: #c9a96e;
+    --cream: #e9e1d5;
+    --muted: #8b8496;
+    --line: #221f2a;
+  }
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+  /* Mehndi animated pattern */
+  .mandala-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.035;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(212,180,106,0.09) 0%, transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(201,169,110,0.06) 0%, transparent 40%);
+  }
+  .mandala-svg {
+    position: absolute;
+    width: 980px;
+    height: 980px;
+    left: -220px;
+    top: -180px;
+    opacity: 0.055;
+    animation: slowSpin 140s linear infinite;
+  }
+  .mandala-svg.r2 {
+    left: auto; right: -300px; top: 52vh;
+    width: 780px; height: 780px;
+    animation-direction: reverse;
+    animation-duration: 180s;
+  }
+  @keyframes slowSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .glass-nav {
+    background: rgba(10,10,15,0.72);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border-bottom: 1px solid rgba(212,180,106,0.10);
+  }
+  .hairline { height:1px; background: linear-gradient(90deg, transparent, rgba(212,180,106,0.32), transparent); }
+  .gold-text {
+    background: linear-gradient(100deg, #dcc084 0%, #e8c97a 18%, #c9a96e 45%, #f2d99a 72%, #b88e46 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .soft-shadow {
+    box-shadow: 0 28px 80px rgba(0,0,0,0.55), 0 1px 0 rgba(212,180,106,0.08) inset;
+  }
+  .card-glass {
+    background: linear-gradient(160deg, rgba(25,23,32,0.82) 0%, rgba(16,15,22,0.84) 100%);
+    border: 1px solid rgba(212,180,106,0.13);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  .filter-chip {
+    transition: all .35s cubic-bezier(.22,1,.36,1);
+    border:1px solid rgba(212,180,106,0.18);
+    color: #b9a991;
+    background: rgba(22,20,29,0.55);
+  }
+  .filter-chip.active, .filter-chip:hover {
+    border-color: rgba(212,180,106,0.55);
+    color: #f2e3c4;
+    background: rgba(212,180,106,0.07);
+  }
+  .gallery-card {
+    transition: transform .7s cubic-bezier(.19,1,.22,1), box-shadow .5s ease;
+    overflow: hidden;
+    position: relative;
+    background:#141320;
+  }
+  .gallery-card:hover {
+    transform: translateY(-7px);
+  }
+  .gallery-card img {
+    transition: transform 1.1s cubic-bezier(.19,1,.22,1), filter .6s ease;
+  }
+  .gallery-card:hover img {
+    transform: scale(1.045);
+    filter: brightness(1.06) saturate(1.04);
+  }
+  .gallery-overlay {
+    position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(6,5,10,0.92) 0%, rgba(6,5,10,0.24) 45%, transparent 70%);
+    opacity: .96;
+  }
+  .vignette {
+    position: absolute; inset:0;
+    background: radial-gradient(ellipse 70% 90% at 65% 50%, transparent 30%, rgba(10,10,15,0.52) 100%);
+    pointer-events:none;
+  }
+  .input-luxe {
+    background: rgba(21,19,28,0.95);
+    border: 1px solid rgba(212,180,106,0.19);
+    color: #efe6d8;
+    transition: all .25s ease;
+  }
+  .input-luxe:focus {
+    outline:none;
+    border-color: rgba(232,201,122,0.55);
+    box-shadow: 0 0 0 4px rgba(212,180,106,0.07);
+    background: rgba(25,22,33,0.96);
+  }
+  .input-luxe::placeholder { color: #6f6778; }
+  .btn-gold {
+    background: linear-gradient(105deg, #d6b56e 0%, #e8c97a 35%, #c9a86d 100%);
+    color: #1b1408;
+    font-weight: 500;
+    letter-spacing: .035em;
+    transition: all .35s ease;
+  }
+  .btn-gold:hover {
+    filter: brightness(1.07);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 44px rgba(212,175,90,0.18);
+  }
+  .btn-ghost-gold {
+    border: 1px solid rgba(212,180,106,0.34);
+    color: #e4d0a5;
+    transition: all .3s ease;
+  }
+  .btn-ghost-gold:hover {
+    background: rgba(212,180,106,0.07);
+    border-color: rgba(212,180,106,0.6);
+  }
+  .eyebrow {
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    color: var(--gold-soft);
+    font-weight: 500;
+  }
+  .thin-divider {
+    height:1px;
+    background: linear-gradient(90deg, transparent, rgba(212,180,106,0.20) 24%, rgba(212,180,106,0.20) 76%, transparent);
+  }
+  .marquee-track {
+    animation: marquee 46s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .noise::before {
+    content: '';
+    position: absolute; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: .022;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  /* custom scrollbar minimal */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background:#0A0A0F; }
+  ::-webkit-scrollbar-thumb { background: #2a2533; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background:#3a3245; }
+  .preloader {
+    position: fixed; inset:0; z-index:9999;
+    background:#09090e;
+    display:flex; align-items:center; justify-content:center;
+    transition: opacity .9s ease, visibility .9s ease;
+  }
+  .preloader.hide { opacity:0; visibility:hidden; pointer-events:none; }
+  .mandala-spin-pre {
+    width: 84px; height:84px;
+    border:1px solid rgba(212,180,106,0.22);
+    border-radius: 50%;
+    position:relative;
+    animation: slowSpin 5.2s linear infinite;
+  }
+  .mandala-spin-pre::after{
+    content:''; position:absolute; inset:16px;
+    border:1px solid rgba(212,180,106,0.15);
+    border-radius:50%;
+  }
+  .mandala-spin-pre::before{
+    content:''; position:absolute; inset:31px;
+    background: radial-gradient(circle, #d4b46a 0%, transparent 70%);
+    border-radius:50%;
+    opacity:.75;
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="text-center">
+    <div class="mandala-spin-pre mx-auto mb-6"></div>
+    <div class="display text-[28px] tracking-[0.28em] gold-text">ZARA</div>
+    <div class="text-[9px] tracking-[0.34em] text-[#9d8b6e] mt-2 uppercase">Maison de Mehndi</div>
+  </div>
+</div>
+
+<!-- Animated Mehndi Background -->
+<div class="mandala-bg">
+  <svg class="mandala-svg" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#d4b46a" stroke-width="0.55" fill="none" opacity="1">
+      <circle cx="300" cy="300" r="120"/>
+      <circle cx="300" cy="300" r="168"/>
+      <circle cx="300" cy="300" r="218"/>
+      <circle cx="300" cy="300" r="268"/>
+      <g>
+        <path d="M300 132 C330 200 330 400 300 468 C270 400 270 200 300 132Z"/>
+        <path d="M300 132 C330 200 330 400 300 468 C270 400 270 200 300 132Z" transform="rotate(30 300 300)"/>
+        <path d="M300 132 C330 200 330 400 300 468 C270 400 270 200 300 132Z" transform="rotate(60 300 300)"/>
+        <path d="M300 132 C330 200 330 400 300 468 C270 400 270 200 300 132Z" transform="rotate(90 300 300)"/>
+        <path d="M300 132 C330 200 330 400 300 468 C270 400 270 200 300 132Z" transform="rotate(120 300 300)"/>
+        <path d="M300 132 C330 200 330 400 300 468 C270 400 270 200 300 132Z" transform="rotate(150 300 300)"/>
+      </g>
+      <g opacity=".9">
+        <circle cx="300" cy="96" r="10"/>
+        <circle cx="300" cy="96" r="10" transform="rotate(45 300 300)"/>
+        <circle cx="300" cy="96" r="10" transform="rotate(90 300 300)"/>
+        <circle cx="300" cy="96" r="10" transform="rotate(135 300 300)"/>
+        <circle cx="300" cy="96" r="10" transform="rotate(180 300 300)"/>
+        <circle cx="300" cy="96" r="10" transform="rotate(225 300 300)"/>
+        <circle cx="300" cy="96" r="10" transform="rotate(270 300 300)"/>
+        <circle cx="300" cy="96" r="10" transform="rotate(315 300 300)"/>
+      </g>
+    </g>
+  </svg>
+  <svg class="mandala-svg r2" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#c9a96e" stroke-width="0.5" fill="none" opacity="1">
+      <circle cx="300" cy="300" r="140"/>
+      <circle cx="300" cy="300" r="200"/>
+      <circle cx="300" cy="300" r="254"/>
+    </g>
+  </svg>
+</div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-[60] glass-nav" id="mainNav">
+  <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14">
+    <div class="flex items-center justify-between h-[78px]">
+      <a href="#" class="flex items-center gap-3">
+        <span class="display text-[26px] tracking-[0.18em] gold-text">ZARA</span>
+        <span class="hidden sm:block text-[8.5px] tracking-[0.28em] text-[#b9a382] uppercase mt-[2px]">Maison de Mehndi</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-10 text-[12.5px] tracking-wider text-[#cdbda5]">
+        <a href="#atelier" class="hover:text-[#f1e0be] transition-colors">Atelier</a>
+        <a href="#collection" class="hover:text-[#f1e0be] transition-colors">Collection</a>
+        <a href="#artistry" class="hover:text-[#f1e0be] transition-colors">Artistry</a>
+        <a href="#editorial" class="hover:text-[#f1e0be] transition-colors">Journal</a>
+        <button id="openAdminNav" class="text-[#a9956f] hover:text-[#e6c98a]">Concierge</button>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#reserve" class="hidden sm:inline-flex text-[11px] tracking-[0.18em] uppercase px-5 py-[11px] btn-ghost-gold rounded-full">Reserve</a>
+        <button id="mobileMenuBtn" class="lg:hidden text-[#d8c6a8] p-2">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-[rgba(212,180,106,0.12)] bg-[rgba(10,10,15,0.97)]">
+    <div class="px-6 py-6 space-y-4 text-[13px] tracking-wider text-[#d5c6b0]">
+      <a href="#atelier" class="block">Atelier</a>
+      <a href="#collection" class="block">Collection</a>
+      <a href="#artistry" class="block">Artistry</a>
+      <a href="#editorial" class="block">Journal</a>
+      <a href="#reserve" class="block gold-text">Reserve a date →</a>
+    </div>
+  </div>
+</nav>
+
+<main class="relative z-10">
+
+  <!-- HERO -->
+  <section class="relative min-h-[100vh] flex items-center pt-[110px] pb-20 overflow-hidden">
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14 w-full grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
+      <!-- Left copy -->
+      <div class="lg:col-span-6 relative py-8 lg:py-0">
+        <div class="eyebrow mb-5" id="heroEyebrow">Est. Marrakech • Dubai • Paris</div>
+        <h1 class="display text-[52px] sm:text-[68px] lg:text-[84px] leading-[0.89] tracking-[-0.011em] text-[#f1e9dc]" id="heroTitle">
+          Bespoke<br/>
+          <em class="fancy italic text-[56px] sm:text-[74px] lg:text-[92px] gold-text font-[300]">Bridal Mehndi</em><br/>
+          for the modern heiress
+        </h1>
+        <p class="mt-7 max-w-[460px] text-[15.5px] leading-relaxed text-[#b8a896] font-light" id="heroSub">
+          Couture henna, hand-painted in 100% natural jagua. Private atelier appointments across 14 cities. Each design is archived, named, and never repeated.
+        </p>
+
+        <div class="mt-9 flex flex-wrap gap-4 items-center" id="heroCtas">
+          <a href="#reserve" class="btn-gold px-8 py-[15px] rounded-full text-[12.5px] tracking-[0.14em] uppercase">Book Private Consultation</a>
+          <a href="#collection" class="text-[12px] tracking-[0.14em] uppercase text-[#d6c1a0] underline underline-offset-8 decoration-[rgba(212,180,106,0.35)] hover:decoration-[#d4b46a]">View Atelier Portfolio</a>
+        </div>
+
+        <div class="mt-14 flex flex-wrap gap-10 text-[11.5px] text-[#a79781]" id="heroStats">
+          <div>
+            <div class="display text-[32px] text-[#e8d8bb] leading-none">1,240+</div>
+            <div class="uppercase tracking-wider mt-1 text-[9.5px] text-[#9b8770]">Bridal Commissions</div>
+          </div>
+          <div>
+            <div class="display text-[32px] text-[#e8d8bb] leading-none">18</div>
+            <div class="uppercase tracking-wider mt-1 text-[9.5px] text-[#9b8770]">Countries Served</div>
+          </div>
+          <div>
+            <div class="display text-[32px] text-[#e8d8bb] leading-none">4.9</div>
+            <div class="uppercase tracking-wider mt-1 text-[9.5px] text-[#9b8770]">Atelier Rating</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right hero image -->
+      <div class="lg:col-span-6 relative" id="heroVisual">
+        <div class="relative mx-auto max-w-[520px]">
+          <!-- gold frame glow -->
+          <div class="absolute -inset-[20px] rounded-[34px]" style="background: radial-gradient(80% 80% at 50% 35%, rgba(212,180,106,0.10), transparent 70%); filter: blur(22px);"></div>
+          <div class="relative rounded-[28px] overflow-hidden soft-shadow border border-[rgba(212,180,106,0.21)]">
+            <img src="https://images.pexels.com/photos/37569824/pexels-photo-37569824.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1100&w=840" alt="Bridal mehndi hands" class="w-full h-[580px] sm:h-[660px] object-cover object-center" />
+            <div class="vignette"></div>
+            <!-- floating tag -->
+            <div class="absolute top-6 left-6 card-glass rounded-2xl px-4 py-3">
+              <div class="text-[9px] tracking-[0.22em] uppercase text-[#d3b980]">Signature</div>
+              <div class="display text-[18px] text-[#f3ebd9]">Noor • Royal Cascade</div>
+            </div>
+            <!-- bottom info -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 pb-7" style="background: linear-gradient(to top, rgba(7,6,11,0.9) 10%, transparent);">
+              <div class="flex items-end justify-between">
+                <div>
+                  <div class="text-[10px] tracking-[0.2em] uppercase text-[#d2b87f]">Wear Time</div>
+                  <div class="text-[13px] text-[#e8dbc3] mt-1">14–18 days • deep auburn stain</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-[10px] tracking-[0.2em] uppercase text-[#d2b87f]">Session</div>
+                  <div class="text-[13px] text-[#e8dbc3] mt-1">4.5 hours</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- side accent cards -->
+          <div class="hidden md:block absolute -right-8 top-[140px] card-glass rounded-2xl px-4 py-3 w-[190px]">
+            <div class="text-[9px] tracking-[0.18em] uppercase text-[#c9a96e]">Worldwide travel</div>
+            <div class="text-[12.5px] text-[#e7d8bc] mt-1">Dubai → London → NY • private jet ready</div>
+          </div>
+          <div class="hidden md:block absolute -left-10 bottom-[108px] card-glass rounded-2xl px-4 py-3">
+            <div class="text-[9px] tracking-[0.18em] uppercase text-[#c9a96e]">Natural</div>
+            <div class="text-[12.5px] text-[#e7d8bc]">100% organic • jagua blend</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- bottom marque strip -->
+    <div class="absolute bottom-0 left-0 right-0 border-t border-[rgba(212,180,106,0.11)] bg-[rgba(10,10,15,0.56)] backdrop-blur-md">
+      <div class="overflow-hidden py-[14px]">
+        <div class="marquee-track text-[11px] tracking-[0.26em] uppercase text-[#b69a6a]">
+          <span class="mx-8">Vogue Weddings 2025 • Featured Atelier</span>
+          <span class="mx-8">✦</span>
+          <span class="mx-8">Harper’s Bazaar Bride Approved</span>
+          <span class="mx-8">✦</span>
+          <span class="mx-8">Private Client Waitlist • Spring 2026 Open</span>
+          <span class="mx-8">✦</span>
+          <span class="mx-8">Vogue Weddings 2025 • Featured Atelier</span>
+          <span class="mx-8">✦</span>
+          <span class="mx-8">Harper’s Bazaar Bride Approved</span>
+          <span class="mx-8">✦</span>
+          <span class="mx-8">Private Client Waitlist • Spring 2026 Open</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATELIER INTRO -->
+  <section id="atelier" class="relative py-28 sm:py-36">
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div class="grid lg:grid-cols-12 gap-14 items-start">
+        <div class="lg:col-span-5">
+          <div class="eyebrow mb-4">The Atelier</div>
+          <h2 class="display text-[42px] sm:text-[54px] leading-[0.95] text-[#f1e9dc]">Mehndi as<br/>haute couture.</h2>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-[17.5px] leading-relaxed text-[#c9bba6] font-light max-w-[600px]">
+            Founded in 2014 by Zara El-Amin, our maison treats henna as an heirloom art form. Every bride receives a hand-sketched architectural blueprint 3 weeks prior, two live fittings, and a sealed archival vial of their custom botanical mix.
+          </p>
+          <div class="thin-divider my-9 max-w-[600px]"></div>
+          <div class="grid sm:grid-cols-3 gap-8 text-[13.5px] text-[#b2a08a] max-w-[640px]">
+            <div>
+              <div class="text-[10px] tracking-[0.18em] uppercase text-[#d3b97f] mb-2">Philosophy</div>
+              Symmetry born from asymmetry. Old-world motifs, modern negative space.
+            </div>
+            <div>
+              <div class="text-[10px] tracking-[0.18em] uppercase text-[#d3b97f] mb-2">Material</div>
+              Triple-sifted Rajasthani henna • French lavender • Ceylon oil
+            </div>
+            <div>
+              <div class="text-[10px] tracking-[0.18em] uppercase text-[#d3b97f] mb-2">Promise</div>
+              Named, numbered & never duplicated. Your pattern is yours forever.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE COLLECTION GALLERY -->
+  <section id="collection" class="relative py-24">
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
+        <div>
+          <div class="eyebrow mb-3">Signature Collection • FW 26</div>
+          <h3 class="display text-[44px] sm:text-[56px] leading-[0.95] text-[#f1e9dc]">Four houses.<br/>Infinite restraint.</h3>
+        </div>
+        <div class="flex flex-wrap gap-2" id="filterWrap">
+          <button class="filter-chip active px-5 py-[10px] rounded-full text-[11.5px] tracking-wider uppercase" data-filter="all">All Houses</button>
+          <button class="filter-chip px-5 py-[10px] rounded-full text-[11.5px] tracking-wider uppercase" data-filter="bridal">Bridal</button>
+          <button class="filter-chip px-5 py-[10px] rounded-full text-[11.5px] tracking-wider uppercase" data-filter="arabic">Arabic</button>
+          <button class="filter-chip px-5 py-[10px] rounded-full text-[11.5px] tracking-wider uppercase" data-filter="modern">Modern</button>
+          <button class="filter-chip px-5 py-[10px] rounded-full text-[11.5px] tracking-wider uppercase" data-filter="royal">Royal</button>
+        </div>
+      </div>
+
+      <!-- gallery grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7" id="galleryGrid">
+        <!-- JS populates -->
+      </div>
+
+      <div class="text-center mt-14">
+        <button id="viewFullArchive" class="btn-ghost-gold px-7 py-3 rounded-full text-[11.5px] tracking-[0.16em] uppercase">Open Full Archive — 214 Looks</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTISTRY / process -->
+  <section id="artistry" class="relative py-28">
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5">
+          <div class="relative rounded-[26px] overflow-hidden border border-[rgba(212,180,106,0.18)]">
+            <img src="https://images.pexels.com/photos/36354615/pexels-photo-36354615.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700" class="w-full h-[520px] object-cover" alt="Mehndi application"/>
+            <div class="absolute inset-0" style="background: linear-gradient(0deg, rgba(8,7,11,0.42), transparent 55%);"></div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 lg:pl-10">
+          <div class="eyebrow mb-3">Commission Process</div>
+          <h3 class="display text-[40px] sm:text-[50px] leading-[0.97] text-[#f4e9d8] mb-8">From first sketch<br/>to wedding morning.</h3>
+
+          <div class="space-y-7 max-w-[560px]">
+            <div class="flex gap-5">
+              <div class="text-[11px] tracking-wider text-[#d2b87a] mt-[4px]">01 —</div>
+              <div>
+                <div class="text-[17px] text-[#f0e1c6] mb-1 display">Discovery Call</div>
+                <div class="text-[14px] leading-relaxed text-[#b5a491]">60-minute couture consultation. Mood, dress details, jewelry, venue architecture.</div>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="text-[11px] tracking-wider text-[#d2b87a] mt-[4px]">02 —</div>
+              <div>
+                <div class="text-[17px] text-[#f0e1c6] mb-1 display">Architectural Blueprint</div>
+                <div class="text-[14px] leading-relaxed text-[#b5a491]">Hand-inked technical drawing delivered as vellum print + digital heirloom file.</div>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="text-[11px] tracking-wider text-[#d2b87a] mt-[4px]">03 —</div>
+              <div>
+                <div class="text-[17px] text-[#f0e1c6] mb-1 display">Application Day</div>
+                <div class="text-[14px] leading-relaxed text-[#b5a491]">Two artists, climate-controlled suite, 3.5–6 hrs, champagne service, content team.</div>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="text-[11px] tracking-wider text-[#d2b87a] mt-[4px]">04 —</div>
+              <div>
+                <div class="text-[17px] text-[#f0e1c6] mb-1 display">Heirloom Archive</div>
+                <div class="text-[14px] leading-relaxed text-[#b5a491]">Your pattern is named, catalogued, and retired. Never repeated for another bride.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL / pricing tiers -->
+  <section id="editorial" class="relative py-28">
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div class="eyebrow mb-3 text-center">Commission Tiers</div>
+      <h3 class="display text-[42px] sm:text-[52px] text-center text-[#f3e8d5] mb-14">Investment in<br/>permanent memory.</h3>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- tier cards -->
+        <div class="card-glass rounded-[26px] p-8 noise relative">
+          <div class="text-[10px] tracking-[0.2em] uppercase text-[#d4b979]">Maison</div>
+          <div class="display text-[30px] text-[#f2e5cd] mt-2">Arabesque</div>
+          <div class="text-[13px] text-[#b6a48b] mt-3 leading-relaxed">Minimal Arabic flow. Hands to wrist, feet optional.</div>
+          <div class="thin-divider my-6"></div>
+          <div class="text-[27px] display text-[#edd9b4]">$850</div>
+          <div class="text-[11px] text-[#a1937c] mt-1 tracking-wider">2.5 hr • 1 artist</div>
+          <ul class="mt-6 space-y-[10px] text-[13px] text-[#c5b399]">
+            <li>• Custom motif sketch</li>
+            <li>• Organic henna blend</li>
+            <li>• Aftercare kit</li>
+          </ul>
+        </div>
+
+        <div class="card-glass rounded-[26px] p-8 relative overflow-hidden" style="border-color: rgba(232,201,122,0.34); box-shadow: 0 0 46px rgba(212,180,106,0.065);">
+          <div class="absolute top-0 right-0 text-[9.5px] tracking-[0.22em] uppercase px-4 py-[9px] rounded-bl-[16px]" style="background: linear-gradient(100deg,#e8c97a,#cfa760); color:#1b1307;">Most Requested</div>
+          <div class="text-[10px] tracking-[0.2em] uppercase text-[#e4ca8b] mt-4">Couture</div>
+          <div class="display text-[30px] text-[#f9edcf] mt-2">Noor Bridal</div>
+          <div class="text-[13px] text-[#cfbd9d] mt-3 leading-relaxed">Full bridal arms + hands, legs optional. Heirloom design naming.</div>
+          <div class="thin-divider my-6"></div>
+          <div class="text-[27px] display gold-text">$2,400</div>
+          <div class="text-[11px] text-[#cfb680] mt-1 tracking-wider">4.5 – 6 hr • 2 artists</div>
+          <ul class="mt-6 space-y-[10px] text-[13px] text-[#e4d0ad]">
+            <li>• Architectural blueprint</li>
+            <li>• 2 live fittings</li>
+            <li>• Content documentation</li>
+            <li>• Archival vial + naming</li>
+          </ul>
+        </div>
+
+        <div class="card-glass rounded-[26px] p-8 noise relative">
+          <div class="text-[10px] tracking-[0.2em] uppercase text-[#d4b979]">Heritage</div>
+          <div class="display text-[30px] text-[#f2e5cd] mt-2">Mughal Royale</div>
+          <div class="text-[13px] text-[#b6a48b] mt-3 leading-relaxed">Full body bridal court. Multi-day, multi-artist, palace travel.</div>
+          <div class="thin-divider my-6"></div>
+          <div class="text-[27px] display text-[#edd9b4]">from $6,800</div>
+          <div class="text-[11px] text-[#a1937c] mt-1 tracking-wider">2 days • atelier team</div>
+          <ul class="mt-6 space-y-[10px] text-[13px] text-[#c5b399]">
+            <li>• Private atelier week</li>
+            <li>• Destination travel incl.</li>
+            <li>• Bridal party coordination</li>
+            <li>• Permanent archive rights</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="text-center text-[12px] text-[#9a8972] mt-10 max-w-[640px] mx-auto leading-relaxed">
+        International travel, hotel suite setup, and bridal party additions quoted privately. 40% retainer secures your date. Waitlist for peak season (Oct–Feb, May–June).
+      </p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="relative py-24 border-t border-[rgba(212,180,106,0.09)]">
+    <div class="max-w-[1080px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div class="eyebrow mb-5 text-center">Client Journal</div>
+      <div class="relative card-glass rounded-[30px] p-10 sm:p-14 text-center">
+        <div class="text-[#dfc68a] text-[40px] display leading-none mb-4">“</div>
+        <p class="display text-[24px] sm:text-[30px] leading-[1.35] text-[#f0e1c9] max-w-[760px] mx-auto italic" id="testimonialQuote">
+          Zara didn’t paint mehndi — she composed a love letter across my skin. Six hours felt like a spa ritual. My stain lasted 19 days and guests are still asking who the artist was.
+        </p>
+        <div class="mt-7">
+          <div class="text-[13px] text-[#e7d3ab] tracking-wide">Amira Khalil</div>
+          <div class="text-[11px] text-[#a28c6b] tracking-wider uppercase mt-1">Dubai • Aman Private Wedding — March 2025</div>
+        </div>
+        <div class="flex justify-center gap-3 mt-8" id="testimonialDots">
+          <button class="w-[32px] h-[4px] rounded-full bg-[#d4b46a] transition-all" data-t="0"></button>
+          <button class="w-[18px] h-[4px] rounded-full bg-[#3a2f22] transition-all" data-t="1"></button>
+          <button class="w-[18px] h-[4px] rounded-full bg-[#3a2f22] transition-all" data-t="2"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING / RESERVE -->
+  <section id="reserve" class="relative py-28 sm:py-32">
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div class="grid lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-5">
+          <div class="eyebrow mb-4">Private Consultation</div>
+          <h3 class="display text-[44px] sm:text-[54px] leading-[0.95] text-[#f2e8d4]">Reserve<br/>your date.</h3>
+          <p class="text-[15.5px] leading-relaxed text-[#bca991] mt-6 max-w-[420px]">
+            Spring 2026 bridal calendar is now open. We accept 7 commissions per month to preserve artistry quality. Response within 12 hours.
+          </p>
+
+          <div class="mt-10 space-y-5 text-[13.5px] text-[#c9b89a]">
+            <div class="flex items-start gap-3">
+              <span class="text-[#d4b46a] mt-[2px]">✦</span>
+              <span>WhatsApp concierge: <a href="https://wa.me/971501234567" class="underline underline-offset-4 decoration-[rgba(212,180,106,0.35)]">+971 50 123 4567</a></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-[#d4b46a] mt-[2px]">✦</span>
+              <span>Atelier: Jumeirah Al Naseem • London Mayfair • Paris 16e</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-[#d4b46a] mt-[2px]">✦</span>
+              <span>Average response: 7 hours • Monday–Saturday</span>
+            </div>
+          </div>
+
+          <div class="mt-10 card-glass rounded-2xl px-5 py-4 max-w-[380px]">
+            <div class="text-[10px] tracking-[0.2em] uppercase text-[#d3b97f]">Waitlist status</div>
+            <div class="flex justify-between items-center mt-2">
+              <div class="text-[13px] text-[#e9dbc1]">May & June 2026</div>
+              <div class="text-[11px] text-[#d6ba78]">3 slots left</div>
+            </div>
+            <div class="w-full h-[4px] bg-[#221c2a] rounded-full mt-3 overflow-hidden">
+              <div class="h-full" style="width:72%; background: linear-gradient(90deg,#b99048,#e8c97a);"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <form id="bookingForm" class="card-glass rounded-[28px] p-7 sm:p-10 noise relative">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="text-[10px] tracking-[0.18em] uppercase text-[#c8b285]">Full Name</label>
+                <input required name="name" class="input-luxe w-full mt-2 px-4 py-[13px] rounded-xl text-[14px]" placeholder="Aaliyah Noor">
+              </div>
+              <div>
+                <label class="text-[10px] tracking-[0.18em] uppercase text-[#c8b285]">Email</label>
+                <input required type="email" name="email" class="input-luxe w-full mt-2 px-4 py-[13px] rounded-xl text-[14px]" placeholder="hello@domain.com">
+              </div>
+              <div>
+                <label class="text-[10px] tracking-[0.18em] uppercase text-[#c8b285]">WhatsApp</label>
+                <input name="whatsapp" class="input-luxe w-full mt-2 px-4 py-[13px] rounded-xl text-[14px]" placeholder="+971 • • • • •">
+              </div>
+              <div>
+                <label class="text-[10px] tracking-[0.18em] uppercase text-[#c8b285]">Wedding Date</label>
+                <input required type="date" name="date" class="input-luxe w-full mt-2 px-4 py-[13px] rounded-xl text-[14px]">
+              </div>
+              <div>
+                <label class="text-[10px] tracking-[0.18em] uppercase text-[#c8b285]">City</label>
+                <input name="city" class="input-luxe w-full mt-2 px-4 py-[13px] rounded-xl text-[14px]" placeholder="Dubai / London / Paris">
+              </div>
+              <div>
+                <label class="text-[10px] tracking-[0.18em] uppercase text-[#c8b285]">Commission Tier</label>
+                <select name="tier" class="input-luxe w-full mt-2 px-4 py-[13px] rounded-xl text-[14px]">
+                  <option value="arabesque">Arabesque — $850</option>
+                  <option value="noor" selected>Noor Bridal — $2,400</option>
+                  <option value="mughal">Mughal Royale — from $6,800</option>
+                  <option value="custom">Private bespoke quote</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label class="text-[10px] tracking-[0.18em] uppercase text-[#c8b285]">Design Notes / Vision</label>
+                <textarea name="notes" rows="4" class="input-luxe w-full mt-2 px-4 py-[13px] rounded-xl text-[14px] resize-none" placeholder="Dress designer, jewelry style, cultural motifs, inspiration links…"></textarea>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 mt-8">
+              <label class="flex items-start gap-3 text-[12.5px] text-[#b7a48a] cursor-pointer">
+                <input type="checkbox" required class="mt-[3px] accent-[#d4b46a]">
+                <span>I understand the 40% retainer secures my date, and commissions are non-transferable.</span>
+              </label>
+              <button type="submit" class="btn-gold px-8 py-[14px] rounded-full text-[12px] tracking-[0.14em] uppercase whitespace-nowrap">
+                Submit Inquiry
+              </button>
+            </div>
+
+            <div id="bookingSuccess" class="hidden mt-6 text-[13px] text-[#dfc98a] card-glass rounded-xl px-4 py-3 border border-[rgba(212,180,106,0.27)]">
+              Merci — your couture inquiry is received. Zara’s concierge will reply within 12 hours via email and WhatsApp.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram / editorial strip -->
+  <section class="py-20 border-y border-[rgba(212,180,106,0.09)]">
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div class="flex items-center justify-between mb-8">
+        <div class="eyebrow">@zara.mehndi.atelier</div>
+        <div class="text-[11px] tracking-wider text-[#a8926d]">127k • editorial archive</div>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+        <img src="https://images.pexels.com/photos/17343897/pexels-photo-17343897.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400" class="w-full h-[170px] sm:h-[190px] object-cover rounded-[16px] opacity-[0.9] hover:opacity-100 transition-opacity" alt="">
+        <img src="https://images.pexels.com/photos/5824023/pexels-photo-5824023.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400" class="w-full h-[170px] sm:h-[190px] object-cover rounded-[16px] opacity-[0.9] hover:opacity-100 transition-opacity" alt="">
+        <img src="https://images.pexels.com/photos/12465309/pexels-photo-12465309.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400" class="w-full h-[170px] sm:h-[190px] object-cover rounded-[16px] opacity-[0.9] hover:opacity-100 transition-opacity" alt="">
+        <img src="https://images.pexels.com/photos/35719241/pexels-photo-35719241.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400" class="w-full h-[170px] sm:h-[190px] object-cover rounded-[16px] opacity-[0.9] hover:opacity-100 transition-opacity" alt="">
+        <img src="https://images.pexels.com/photos/34260580/pexels-photo-34260580.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400" class="hidden sm:block w-full h-[170px] sm:h-[190px] object-cover rounded-[16px] opacity-[0.9] hover:opacity-100 transition-opacity" alt="">
+        <img src="https://images.pexels.com/photos/9950404/pexels-photo-9950404.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=400&w=400" class="hidden lg:block w-full h-[170px] sm:h-[190px] object-cover rounded-[16px] opacity-[0.9] hover:opacity-100 transition-opacity" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative py-20">
+    <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-14">
+      <div class="grid md:grid-cols-12 gap-12">
+        <div class="md:col-span-5">
+          <div class="display text-[30px] gold-text tracking-[0.18em]">ZARA</div>
+          <div class="text-[10px] tracking-[0.3em] uppercase text-[#a48a62] mt-1">Maison de Mehndi • Est. 2014</div>
+          <p class="text-[13.5px] text-[#b3a087] leading-relaxed mt-6 max-w-[380px]">
+            Bespoke bridal henna atelier. Private commissions worldwide.
+            Each design named, archived, and retired forever.
+          </p>
+        </div>
+        <div class="md:col-span-2">
+          <div class="text-[10px] tracking-[0.2em] uppercase text-[#c8b286] mb-4">Atelier</div>
+          <ul class="space-y-3 text-[13px] text-[#bba989]">
+            <li><a href="#collection" class="hover:text-[#e8d6b3]">Collection</a></li>
+            <li><a href="#artistry" class="hover:text-[#e8d6b3]">Process</a></li>
+            <li><a href="#editorial" class="hover:text-[#e8d6b3]">Investment</a></li>
+            <li><a href="#reserve" class="hover:text-[#e8d6b3]">Reserve</a></li>
+          </ul>
+        </div>
+        <div class="md:col-span-2">
+          <div class="text-[10px] tracking-[0.2em] uppercase text-[#c8b286] mb-4">Studios</div>
+          <ul class="space-y-3 text-[13px] text-[#bba989]">
+            <li>Dubai • Jumeirah</li>
+            <li>London • Mayfair</li>
+            <li>Paris • XVIe</li>
+            <li>New York • by appt</li>
+          </ul>
+        </div>
+        <div class="md:col-span-3">
+          <div class="text-[10px] tracking-[0.2em] uppercase text-[#c8b286] mb-4">Concierge</div>
+          <div class="text-[13px] text-[#bba989] space-y-2">
+            <div>concierge@zara-mehndi.com</div>
+            <div>+971 50 123 4567</div>
+            <button id="footerAdminBtn" class="mt-3 text-[11px] tracking-wider text-[#b89256] hover:text-[#e7c97c] underline underline-offset-4">Atelier login →</button>
+          </div>
+        </div>
+      </div>
+      <div class="thin-divider my-12"></div>
+      <div class="flex flex-col sm:flex-row justify-between text-[11px] text-[#83725c] gap-4">
+        <div>© 2026 ZARA Maison de Mehndi. All designs proprietary & archived.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-[#ceb78a]">Privacy</a>
+          <a href="#" class="hover:text-[#ceb78a]">Terms</a>
+          <a href="#" class="hover:text-[#ceb78a]">Press</a>
+          <a href="#" class="hover:text-[#ceb78a]">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<!-- WhatsApp floating -->
+<a href="https://wa.me/971501234567?text=Salam%20Zara%20Atelier%20—%20I%27d%20like%20to%20discuss%20a%20bridal%20commission." target="_blank"
+  class="fixed bottom-5 right-5 z-50 card-glass rounded-full px-4 py-[13px] flex items-center gap-3 shadow-2xl hover:bg-[rgba(30,27,40,0.9)] transition-all group"
+  aria-label="WhatsApp Concierge">
+  <span class="w-[9px] h-[9px] rounded-full bg-[#26c266] shadow-[0_0_12px_rgba(38,194,102,0.45)]"></span>
+  <span class="text-[12px] text-[#e9dcc3] tracking-wide">WhatsApp Concierge</span>
+</a>
+
+<!-- ADMIN DASHBOARD MODAL -->
+<div id="adminOverlay" class="fixed inset-0 z-[100] hidden">
+  <div class="absolute inset-0 bg-[rgba(5,5,8,0.78)] backdrop-blur-[14px]" id="adminBackdrop"></div>
+  <div class="relative h-full overflow-y-auto">
+    <div class="min-h-full flex items-start justify-center py-10 px-4">
+      <div class="w-full max-w-[1100px] card-glass rounded-[28px] soft-shadow noise relative overflow-hidden">
+        <!-- admin header -->
+        <div class="px-7 sm:px-10 py-7 border-b border-[rgba(212,180,106,0.14)] flex items-center justify-between">
+          <div>
+            <div class="eyebrow">Atelier Concierge</div>
+            <div class="display text-[28px] text-[#f0e2c6] mt-1">Booking Dashboard</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <button id="exportCsvBtn" class="text-[11px] tracking-wider px-4 py-[9px] rounded-full btn-ghost-gold">Export CSV</button>
+            <button id="closeAdmin" class="text-[#d2c0a3] hover:text-[#fff] p-2 rounded-full hover:bg-[rgba(255,255,255,0.05)]">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- stats -->
+        <div class="px-7 sm:px-10 py-7 grid grid-cols-2 md:grid-cols-4 gap-5 border-b border-[rgba(212,180,106,0.09)]">
+          <div>
+            <div class="text-[11px] text-[#c8b285] uppercase tracking-wider">Total Inquiries</div>
+            <div class="display text-[30px] text-[#f2e4c7] mt-1" id="statTotal">0</div>
+          </div>
+          <div>
+            <div class="text-[11px] text-[#c8b285] uppercase tracking-wider">This Month</div>
+            <div class="display text-[30px] text-[#f2e4c7] mt-1" id="statMonth">0</div>
+          </div>
+          <div>
+            <div class="text-[11px] text-[#c8b285] uppercase tracking-wider">Confirmed</div>
+            <div class="display text-[30px] text-[#e8c97a] mt-1" id="statConfirmed">0</div>
+          </div>
+          <div>
+            <div class="text-[11px] text-[#c8b285] uppercase tracking-wider">Pipeline Value</div>
+            <div class="display text-[30px] text-[#f2e4c7] mt-1" id="statValue">$0</div>
+          </div>
+        </div>
+
+        <!-- filters + table -->
+        <div class="px-7 sm:px-10 py-6">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <input id="adminSearch" placeholder="Search name / city / email…" class="input-luxe px-4 py-[10px] rounded-xl text-[13px] w-full sm:w-[300px]" />
+            <select id="adminFilterTier" class="input-luxe px-3 py-[10px] rounded-xl text-[13px]">
+              <option value="all">All tiers</option>
+              <option value="arabesque">Arabesque</option>
+              <option value="noor">Noor Bridal</option>
+              <option value="mughal">Mughal Royale</option>
+              <option value="custom">Bespoke</option>
+            </select>
+            <select id="adminFilterStatus" class="input-luxe px-3 py-[10px] rounded-xl text-[13px]">
+              <option value="all">All status</option>
+              <option value="new">New</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="archived">Archived</option>
+            </select>
+            <button id="seedDemoBookings" class="ml-auto text-[11px] text-[#c9a96e] underline underline-offset-4">Load demo clients</button>
+          </div>
+
+          <div class="overflow-x-auto border border-[rgba(212,180,106,0.12)] rounded-[18px]">
+            <table class="w-full min-w-[880px] text-[13px]">
+              <thead class="bg-[rgba(26,22,32,0.7)] text-[10px] uppercase tracking-[0.18em] text-[#c2ad84]">
+                <tr>
+                  <th class="text-left px-5 py-4">Client</th>
+                  <th class="text-left px-5 py-4">Wedding</th>
+                  <th class="text-left px-5 py-4">Tier</th>
+                  <th class="text-left px-5 py-4">City</th>
+                  <th class="text-left px-5 py-4">Status</th>
+                  <th class="text-left px-5 py-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody" class="divide-y divide-[rgba(212,180,106,0.07)]">
+                <!-- rows injected -->
+              </tbody>
+            </table>
+          </div>
+          <div id="adminEmpty" class="hidden text-center py-14 text-[13.5px] text-[#9d8b72]">
+            No inquiries yet. Submit a test booking from the Reserve form to see the atelier dashboard in action.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- Preloader ---------- */
+window.addEventListener('load', () => {
+  setTimeout(()=> document.getElementById('preloader').classList.add('hide'), 750);
+});
+
+/* ---------- Mobile menu ---------- */
+document.getElementById('mobileMenuBtn').addEventListener('click', ()=>{
+  document.getElementById('mobileMenu').classList.toggle('hidden');
+});
+
+/* ---------- GSAP Animations ---------- */
+gsap.registerPlugin(ScrollTrigger);
+gsap.from("#heroEyebrow", { y: 18, opacity:0, duration:1, ease:"power3.out", delay:0.9 });
+gsap.from("#heroTitle", { y: 34, opacity:0, duration:1.2, ease:"power3.out", delay:1.05 });
+gsap.from("#heroSub", { y: 22, opacity:0, duration:1, ease:"power2.out", delay:1.25 });
+gsap.from("#heroCtas", { y: 18, opacity:0, duration:0.9, ease:"power2.out", delay:1.4 });
+gsap.from("#heroStats", { y: 22, opacity:0, duration:0.9, ease:"power2.out", delay:1.55 });
+gsap.from("#heroVisual", { x: 26, opacity:0, duration:1.3, ease:"power3.out", delay:1.15 });
+
+/* Scroll reveal */
+document.querySelectorAll('section').forEach((sec, i)=>{
+  if(i===0) return;
+  gsap.from(sec.querySelectorAll('h2, h3, .eyebrow'), {
+    scrollTrigger: { trigger: sec, start: "top 80%" },
+    y: 22, opacity:0, duration:0.8, stagger:0.08, ease:"power2.out"
+  });
+});
+
+/* ---------- Gallery data ---------- */
+const gallery = [
+  { id:1, cat:'bridal', title:'Noor • Royal Cascade', price:'$2,400', img:'https://images.pexels.com/photos/38147796/pexels-photo-38147796.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Bridal Couture', time:'4.5h' },
+  { id:2, cat:'arabic', title:'Zahra • Desert Line', price:'$850', img:'https://images.pexels.com/photos/2643556/pexels-photo-2643556.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Arabesque', time:'2.5h' },
+  { id:3, cat:'modern', title:'Sable • Negative Space', price:'$1,150', img:'https://images.pexels.com/photos/7507610/pexels-photo-7507610.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Modern Minimal', time:'3h' },
+  { id:4, cat:'bridal', title:'Layla • Full Mughal', price:'$6,800+', img:'https://images.pexels.com/photos/35719241/pexels-photo-35719241.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Heritage Bridal', time:'6h' },
+  { id:5, cat:'royal', title:'Amira • Palace Edition', price:'$4,900', img:'https://images.pexels.com/photos/17343897/pexels-photo-17343897.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Royal Commission', time:'5.5h' },
+  { id:6, cat:'arabic', title:'Nour • Gulf Flow', price:'$920', img:'https://images.pexels.com/photos/12465309/pexels-photo-12465309.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Khaleeji', time:'2h' },
+  { id:7, cat:'modern', title:'Lune • Editorial', price:'$1,300', img:'https://images.pexels.com/photos/5602770/pexels-photo-5602770.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Editorial', time:'3.2h' },
+  { id:8, cat:'royal', title:'Sheikha • Heirloom', price:'$7,400', img:'https://images.pexels.com/photos/38147800/pexels-photo-38147800.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Heritage', time:'2 Days' },
+  { id:9, cat:'bridal', title:'Yasmin • Silk Veil', price:'$2,400', img:'https://images.pexels.com/photos/5824023/pexels-photo-5824023.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700', tag:'Bridal Couture', time:'4h' },
+];
+
+const grid = document.getElementById('galleryGrid');
+
+function renderGallery(filter='all'){
+  grid.innerHTML = '';
+  const items = filter==='all' ? gallery : gallery.filter(g=>g.cat===filter);
+  items.forEach((g, i)=>{
+    const el = document.createElement('div');
+    el.className = 'gallery-card rounded-[24px] border border-[rgba(212,180,106,0.16)] group';
+    el.innerHTML = `
+      <div class="relative h-[460px] sm:h-[520px]">
+        <img src="${g.img}" alt="${g.title}" class="w-full h-full object-cover" loading="lazy">
+        <div class="gallery-overlay"></div>
+        <div class="absolute top-4 left-4 text-[9.5px] tracking-[0.19em] uppercase px-3 py-[7px] rounded-full" style="background:rgba(14,12,18,0.62); color:#e9d2a2; border:1px solid rgba(212,180,106,0.22); backdrop-filter: blur(8px)">
+          ${g.tag}
+        </div>
+        <button class="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center" style="background:rgba(16,13,22,0.52); border:1px solid rgba(212,180,106,0.18); backdrop-filter: blur(6px)">
+          <svg width="15" height="15" fill="none" stroke="#e1c891" stroke-width="1.3"><path d="M7.5 2.8l1.9 3.8 4.2.6-3 2.9.7 4.1-3.8-2-3.8 2 .7-4.1-3-2.9 4.2-.6 1.9-3.8z"/></svg>
+        </button>
+        <div class="absolute bottom-0 left-0 right-0 p-6">
+          <div class="text-[11px] tracking-[0.18em] uppercase text-[#d6ba7a]">${g.cat} • ${g.time}</div>
+          <div class="display text-[22px] text-[#f5e8ce] mt-1">${g.title}</div>
+          <div class="flex items-center justify-between mt-3">
+            <div class="text-[13px] text-[#d9c6a6]">${g.price}</div>
+            <button class="text-[11px] tracking-[0.14em] uppercase text-[#e8d0a2] underline underline-offset-6 decoration-[rgba(212,180,106,0.42)]" onclick="openBookingPrefill('${g.title}')">Commission this →</button>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(el);
+    gsap.from(el, { y: 28, opacity:0, duration:0.7, delay: i*0.06, scrollTrigger:{ trigger: el, start:"top 88%"} });
+  });
+}
+renderGallery();
+
+document.querySelectorAll('.filter-chip').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGallery(btn.dataset.filter);
+  });
+});
+
+function openBookingPrefill(title){
+  document.querySelector('[name="notes"]').value = `Interested in: ${title}\n\n`;
+  document.getElementById('reserve').scrollIntoView({behavior:'smooth'});
+}
+
+/* view full archive button */
+document.getElementById('viewFullArchive').addEventListener('click', ()=>{
+  alert('Full Atelier Archive (214 looks) — private client login. Request access via concierge.');
+});
+
+/* ---------- Testimonials ---------- */
+const testimonials = [
+  { quote: "Zara didn’t paint mehndi — she composed a love letter across my skin. Six hours felt like a spa ritual. My stain lasted 19 days and guests are still asking who the artist was.", name:"Amira Khalil", meta:"Dubai • Aman Private Wedding — March 2025" },
+  { quote: "Architectural precision meets poetry. My blueprint hangs framed in our home. No other bride in London has this pattern — it’s eternally mine.", name:"Lina Al-Sayed", meta:"London • Claridge’s — January 2025" },
+  { quote: "Worth every dirham. Two artists, private suite, fresh jasmine tea, and the most exquisite dark stain. Vogue-worthy in every photo.", name:"Sofia Moreau", meta:"Paris • Ritz — October 2024" },
+];
+let tIndex = 0;
+function setTestimonial(i){
+  tIndex = i;
+  const q = document.getElementById('testimonialQuote');
+  q.style.opacity = 0;
+  setTimeout(()=>{
+    q.textContent = testimonials[i].quote;
+    q.nextElementSibling.querySelector('div').textContent = testimonials[i].name;
+    q.nextElementSibling.querySelector('div + div').textContent = testimonials[i].meta;
+    q.style.opacity = 1;
+  },180);
+  document.querySelectorAll('#testimonialDots button').forEach((b,idx)=>{
+    b.classList.toggle('bg-[#d4b46a]', idx===i);
+    b.classList.toggle('bg-[#3a2f22]', idx!==i);
+    b.style.width = idx===i ? '32px' : '18px';
+  });
+}
+document.querySelectorAll('#testimonialDots button').forEach(b=>{
+  b.addEventListener('click', ()=> setTestimonial(parseInt(b.dataset.t)));
+});
+setInterval(()=> setTestimonial((tIndex+1)%testimonials.length), 6200);
+
+/* ---------- Booking form / Admin ---------- */
+const LS_KEY = 'zara_mehndi_bookings_v3';
+
+function getBookings(){
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); } catch(e){ return []; }
+}
+function saveBookings(arr){ localStorage.setItem(LS_KEY, JSON.stringify(arr)); }
+
+function tierPrice(tier){
+  return { arabesque: 850, noor: 2400, mughal: 6800, custom: 3200 }[tier] || 2400;
+}
+function tierLabel(t){
+  return { arabesque:'Arabesque', noor:'Noor Bridal', mughal:'Mughal Royale', custom:'Bespoke' }[t] || t;
+}
+
+document.getElementById('bookingForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const booking = {
+    id: 'ZM' + Date.now().toString(36).toUpperCase(),
+    name: fd.get('name'),
+    email: fd.get('email'),
+    whatsapp: fd.get('whatsapp') || '',
+    date: fd.get('date'),
+    city: fd.get('city') || '',
+    tier: fd.get('tier'),
+    notes: fd.get('notes') || '',
+    status: 'new',
+    createdAt: new Date().toISOString()
+  };
+  const all = getBookings();
+  all.unshift(booking);
+  saveBookings(all);
+  document.getElementById('bookingSuccess').classList.remove('hidden');
+  e.target.reset();
+  setTimeout(()=> document.getElementById('bookingSuccess').classList.add('hidden'), 5400);
+});
+
+/* Admin dashboard */
+const adminOverlay = document.getElementById('adminOverlay');
+function openAdmin(){
+  adminOverlay.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  renderAdmin();
+}
+function closeAdmin(){
+  adminOverlay.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+document.getElementById('openAdminNav').addEventListener('click', openAdmin);
+document.getElementById('footerAdminBtn').addEventListener('click', openAdmin);
+document.getElementById('closeAdmin').addEventListener('click', closeAdmin);
+document.getElementById('adminBackdrop').addEventListener('click', closeAdmin);
+
+function renderAdmin(){
+  const search = (document.getElementById('adminSearch').value || '').toLowerCase();
+  const tierF = document.getElementById('adminFilterTier').value;
+  const statusF = document.getElementById('adminFilterStatus').value;
+
+  let all = getBookings();
+  let filtered = all.filter(b=>{
+    const matchSearch = !search || [b.name,b.email,b.city,b.notes].join(' ').toLowerCase().includes(search);
+    const matchTier = tierF==='all' || b.tier===tierF;
+    const matchStatus = statusF==='all' || b.status===statusF;
+    return matchSearch && matchTier && matchStatus;
+  });
+
+  const tbody = document.getElementById('adminTableBody');
+  tbody.innerHTML = '';
+  document.getElementById('adminEmpty').classList.toggle('hidden', filtered.length>0);
+
+  filtered.forEach(b=>{
+    const tr = document.createElement('tr');
+    tr.className = 'hover:bg-[rgba(212,180,106,0.03)] transition-colors';
+    const statusColor = b.status==='confirmed' ? '#d4b56f' : b.status==='archived' ? '#8b7d66' : '#e6cf95';
+    tr.innerHTML = `
+      <td class="px-5 py-[18px]">
+        <div class="text-[#f0e2c6]">${b.name}</div>
+        <div class="text-[11.5px] text-[#aa9780] mt-[2px]">${b.email}</div>
+      </td>
+      <td class="px-5 py-[18px] text-[#dcc9aa]">${b.date || '—'}</td>
+      <td class="px-5 py-[18px]">
+        <div class="text-[#e8d5ab]">${tierLabel(b.tier)}</div>
+        <div class="text-[11px] text-[#a38f6d]">$${tierPrice(b.tier).toLocaleString()}</div>
+      </td>
+      <td class="px-5 py-[18px] text-[#cdb89a]">${b.city || '—'}</td>
+      <td class="px-5 py-[18px]">
+        <span class="text-[11px] px-[10px] py-[5px] rounded-full" style="border:1px solid ${statusColor}55; color:${statusColor}; background: rgba(212,180,106,0.05)">${b.status}</span>
+      </td>
+      <td class="px-5 py-[18px]">
+        <div class="flex gap-3 text-[11.5px]">
+          <button class="text-[#d6bd84] hover:underline" onclick="updateStatus('${b.id}','confirmed')">Confirm</button>
+          <button class="text-[#bba383] hover:underline" onclick="updateStatus('${b.id}','archived')">Archive</button>
+          <button class="text-[#9c7a5a] hover:underline" onclick="deleteBooking('${b.id}')">Delete</button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // stats
+  document.getElementById('statTotal').textContent = all.length;
+  const thisMonth = all.filter(b=> new Date(b.createdAt).getMonth() === new Date().getMonth()).length;
+  document.getElementById('statMonth').textContent = thisMonth;
+  document.getElementById('statConfirmed').textContent = all.filter(b=>b.status==='confirmed').length;
+  const pipeline = all.reduce((s,b)=> s + tierPrice(b.tier), 0);
+  document.getElementById('statValue').textContent = '$' + pipeline.toLocaleString();
+}
+
+window.updateStatus = (id,status)=>{
+  const all = getBookings();
+  const idx = all.findIndex(b=>b.id===id);
+  if(idx>-1){ all[idx].status = status; saveBookings(all); renderAdmin(); }
+};
+window.deleteBooking = (id)=>{
+  if(!confirm('Remove this inquiry?')) return;
+  saveBookings(getBookings().filter(b=>b.id!==id));
+  renderAdmin();
+};
+
+['adminSearch','adminFilterTier','adminFilterStatus'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', renderAdmin);
+  document.getElementById(id).addEventListener('change', renderAdmin);
+});
+
+/* CSV export */
+document.getElementById('exportCsvBtn').addEventListener('click', ()=>{
+  const all = getBookings();
+  if(!all.length){ alert('No bookings to export.'); return; }
+  const rows = [['ID','Name','Email','WhatsApp','Wedding Date','Tier','City','Status','Notes','Created']];
+  all.forEach(b=> rows.push([b.id,b.name,b.email,b.whatsapp,b.date,b.tier,b.city,b.status,(b.notes||'').replace(/\n/g,' '),b.createdAt]));
+  const csv = rows.map(r=> r.map(v=> `"${String(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'zara-mehndi-bookings.csv';
+  a.click();
+});
+
+/* Seed demo */
+document.getElementById('seedDemoBookings').addEventListener('click', ()=>{
+  if(getBookings().length>0 && !confirm('Add 5 curated demo clients to the dashboard?')) return;
+  const demo = [
+    {id:'ZM-D1', name:'Soraya Al-Fayed', email:'soraya@prive.ae', whatsapp:'+971 50 998 2211', date:'2026-05-17', city:'Dubai', tier:'noor', notes:'Jumeirah Al Naseem wedding. Elie Saab gown.', status:'confirmed', createdAt:'2026-01-22T10:12:00Z'},
+    {id:'ZM-D2', name:'Priya Mehta', email:'p.mehta@london.co.uk', whatsapp:'+44 7700 900412', date:'2026-06-02', city:'London', tier:'mughal', notes:'Two-day royal commission – Claridge’s.', status:'new', createdAt:'2026-01-26T14:00:00Z'},
+    {id:'ZM-D3', name:'Inès Bensalah', email:'ines.b@maison.fr', whatsapp:'+33 6 11 22 33 44', date:'2026-04-25', city:'Paris', tier:'arabesque', notes:'Editorial shoot + intimate dinner.', status:'confirmed', createdAt:'2026-01-18T09:30:00Z'},
+    {id:'ZM-D4', name:'Fatima Noorani', email:'fatima.n@nyc.com', whatsapp:'+1 212 555 0199', date:'2026-09-12', city:'New York', tier:'noor', notes:'The Pierre – full bridal party (8).', status:'new', createdAt:'2026-01-28T19:04:00Z'},
+    {id:'ZM-D5', name:'Amina Hassan', email:'amina.h@doha.qa', whatsapp:'+974 55 123 456', date:'2026-05-30', city:'Doha', tier:'custom', notes:'Private bespoke – pearl inlay reference.', status:'new', createdAt:'2026-01-29T11:40:00Z'},
+  ];
+  saveBookings([...demo, ...getBookings()]);
+  renderAdmin();
+});
+
+/* keyboard shortcut: press A */
+document.addEventListener('keydown', e=>{
+  if((e.key==='a' || e.key==='A') && (e.metaKey || e.ctrlKey)){
+    e.preventDefault(); openAdmin();
+  }
+  if(e.key==='Escape') closeAdmin();
+});
+
+</script>
+</body>
+</html>
